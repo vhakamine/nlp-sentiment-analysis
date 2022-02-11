@@ -1,0 +1,6 @@
+[DEFAULT]
+user=ocid1.user.oc1..aaaaaaaaqfrzmpmbhqmhmbmp52myq7sh55g34gexh2ikx3mgz5jtwjjhxuua
+fingerprint=79:86:b7:01:e4:a6:d1:a6:df:95:ad:80:cc:db:6f:de
+tenancy=ocid1.tenancy.oc1..aaaaaaaakankmz2x3rclvsqfxvro7f6iar2cowvb6inb7pe5th7fmxthrigq
+region=sa-saopaulo-1
+key_file=.oci/oracleidentitycloudservice.pem
