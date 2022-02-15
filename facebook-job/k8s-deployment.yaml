@@ -38,6 +38,6 @@ spec:
         spec:
           containers:
           - name: facebook-job
-            image: <region>.ocir.io/<Object Storage Namespace>/facebook-job:test
+            image: iad.ocir.io/idoulk58kp4z/facebook-job:test
             imagePullPolicy: Always
           restartPolicy: OnFailure

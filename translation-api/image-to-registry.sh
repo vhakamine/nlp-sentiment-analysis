@@ -1,5 +1,5 @@
 docker build -t translation-api-image:latest ./translation-api
 
-docker login <region>.ocir.io -u='<Object Storage Namespace>/oracleidentitycloudservice/<user>' -p='<Auth Token>'
-docker tag translation-api-image:latest <region>.ocir.io/<Object Storage Namespace>/nlp-translation:latest
-docker push <region>.ocir.io/<Object Storage Namespace>/nlp-translation:latest
+docker login iad.ocir.io -u='oracleidentitycloudservice/vinicius.hakamine@outlook.com' -p='Ws-:#T>yA0[33:kyQ_W{'
+docker tag translation-api-image:latest iad.ocir.io/idoulk58kp4z/nlp-translation:latest
+docker push iad.ocir.io/idoulk58kp4z/nlp-translation:latest

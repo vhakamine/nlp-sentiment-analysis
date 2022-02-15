@@ -5,6 +5,6 @@ done
 
 docker build -t translation-api-image ./stream-trigger-job
 
-docker login <region>.ocir.io -u='<Object Storage Namespace>/oracleidentitycloudservice/<user>' -p='<Auth Token>'
-docker tag translation-api-image:latest <region>.ocir.io/<Object Storage Namespace>/stream-trigger-job:latest
-docker push <region>.ocir.io/<Object Storage Namespace>/stream-trigger-job:latest
+docker login iad.ocir.io -u='oracleidentitycloudservice/vinicius.hakamine@outlook.com' -p='Ws-:#T>yA0[33:kyQ_W{'
+docker tag translation-api-image:latest iad.ocir.io/idoulk58kp4z/stream-trigger-job:latest
+docker push iad.ocir.io/idoulk58kp4z/stream-trigger-job:latest

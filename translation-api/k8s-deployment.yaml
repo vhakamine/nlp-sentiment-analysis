@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: translation-api
-        image: <region>.ocir.io/<Object Storage Namespace>/nlp-translation:latest
+        image: iad.ocir.io/idoulk58kp4z/nlp-translation:latest
         imagePullPolicy: Always
         resources:
           requests:
@@ -30,7 +30,7 @@ metadata:
   name: translation-api-minikube-service
   annotations:
     service.beta.kubernetes.io/oci-load-balancer-internal: "true"
-    service.beta.kubernetes.io/oci-load-balancer-subnet1: "<SUBNET_LB_OCID>"
+    service.beta.kubernetes.io/oci-load-balancer-subnet1: "ocid1.subnet.oc1.iad.aaaaaaaax7d6rlsenbiyadobf3owqqloffnawdqn4svkgkrvssbjxxhhkj6a"
 
 spec:
   type: LoadBalancer

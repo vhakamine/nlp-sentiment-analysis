@@ -1,6 +1,6 @@
 [DEFAULT]
-user=ocid1.user.oc1..aaaaaaaaqfrzmpmbhqmhmbmp52myq7sh55g34gexh2ikx3mgz5jtwjjhxuua
-fingerprint=79:86:b7:01:e4:a6:d1:a6:df:95:ad:80:cc:db:6f:de
-tenancy=ocid1.tenancy.oc1..aaaaaaaakankmz2x3rclvsqfxvro7f6iar2cowvb6inb7pe5th7fmxthrigq
-region=sa-saopaulo-1
+user=ocid1.user.oc1..aaaaaaaae6vhcblnt4kbo75tpvqhw7qjcl53k23kw5b6yrj62q25an6m6vta
+fingerprint=1a:d4:78:2f:36:e2:1b:e3:3a:8f:8b:4e:bf:7e:f8:00
+tenancy=ocid1.tenancy.oc1..aaaaaaaaitbnlylg6gkw5en7eh43jqjobldaszt7llfmr44jglssnktyyica
+region=us-ashburn-1
 key_file=.oci/oracleidentitycloudservice.pem

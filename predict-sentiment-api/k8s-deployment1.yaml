@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: predict-sentiment-api-minikube-service
+  annotations:
+    service.beta.kubernetes.io/oci-load-balancer-internal: "true"
+    service.beta.kubernetes.io/oci-load-balancer-subnet1: "ocid1.subnet.oc1.iad.aaaaaaaax7d6rlsenbiyadobf3owqqloffnawdqn4svkgkrvssbjxxhhkj6a"
+    service.beta.kubernetes.io/oci-load-balancer-shape: "400Mbps"
+
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 8082
+    targetPort: 8082
+  selector:
+    app: predict-sentiment-api

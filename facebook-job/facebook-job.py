@@ -26,13 +26,18 @@ def get_fb_posts(days, utc, page_id, access_token):
     data = response.json()
     df_posts = pd.DataFrame(data['data'])
 
-    while len(data['data']) != 0 and datetime.datetime.strptime(data['data'][-1]['created_time'], "%Y-%m-%dT%H:%M:%S%z") >= datetime.datetime.now(tz=utc) - days:
-        url = f"https://graph.facebook.com/{page_id}/posts?access_token={access_token}&after={data['paging']['cursors']['after']}"
-        response = requests.get(url)
-        data = response.json()
-        if len(data['data']) == 0:
-            break
-        df_posts = pd.concat([df_posts, pd.DataFrame(data['data'])])
+    #
+    #while len(data['data']) != 0 and datetime.datetime.strptime(data['data'][-1]['created_time'], "%Y-%m-%dT%H:%M:%S%z") >= datetime.datetime.now(tz=utc) - days:
+    #    url = f"https://graph.facebook.com/{page_id}/posts?access_token={access_token}&after={data['paging']['cursors']['after']}"
+    #    response = requests.get(url)
+    #    data = response.json()
+    #
+    #    print("request")
+    #    print(data)
+    #    
+    #    if len(data['data']) == 0:
+    #        break
+    #    df_posts = pd.concat([df_posts, pd.DataFrame(data['data'])])
         
     return df_posts
 
@@ -45,6 +50,10 @@ def get_fb_comments(df_posts, minutes, utc, page_id, access_token):
         url = f'https://graph.facebook.com/{post_id}/comments?access_token={access_token}&order=reverse_chronological'
         response = requests.get(url)
         data = response.json()
+
+        print("request to" + url)
+        print(data)
+
         try:
             df_comments = pd.concat([df_comments, pd.DataFrame([{**post, **{'post_id':post_id}} for post in data['data']])])
         except:
@@ -106,6 +115,9 @@ def send_to_stream(df_comments):
 def main():
     days, minutes, utc, page_id, access_token = fb_settings()
     df_posts = get_fb_posts(days, utc, page_id, access_token)
+
+    print(df_posts)
+    
     df_comments = get_fb_comments(df_posts, minutes, utc, page_id, access_token)
     #df_threads = get_fb_threads(df_comments, minutes, utc, page_id, access_token)
     if len(df_comments) > 0:

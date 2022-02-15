@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: translation-job
-        image: <region>.ocir.io/<Object Storage Namespace>/stream-trigger-job:latest
+        image: iad.ocir.io/idoulk58kp4z/stream-trigger-job:latest
         env:
           - name: PREDICTSENTIMENT_LB_IP
             value: $PREDICTSENTIMENT_LB_IP
