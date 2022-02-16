@@ -41,14 +41,12 @@ def simple_message_loop(client, stream_id, initial_cursor):
             else:
                 key = b64decode(message.key.encode()).decode()
                 value = b64decode(message.value.encode()).decode()
-                url = f"http://{os.environ['PREDICTSENTIMENT_LB_IP']}:8082/predict"
+                url = f"https://amtml2xl3hevk6jxkc7gvr2jdq.apigateway.us-ashburn-1.oci.customer-oci.com/api/predict"
     
                 headers = {
                            "Content-Type": "application/json",
                            "authorization": os.environ['AUTH_TOKEN_PREDICTSENTIMENT']
                           }
-                
-                requests.post(url, json=json.dumps(json.loads(value)), headers=headers)
 
 
         # get_messages is a throttled method; clients should retrieve sufficiently large message

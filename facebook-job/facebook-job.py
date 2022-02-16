@@ -24,6 +24,7 @@ def get_fb_posts(days, utc, page_id, access_token):
     url= f'https://graph.facebook.com/{page_id}/posts?access_token={access_token}&order=reverse_chronological'
     response = requests.get(url)
     data = response.json()
+    print(data)
     df_posts = pd.DataFrame(data['data'])
 
     #
@@ -51,24 +52,33 @@ def get_fb_comments(df_posts, minutes, utc, page_id, access_token):
         response = requests.get(url)
         data = response.json()
 
-        print("request to" + url)
+        print("request to " + url)
         print(data)
 
         try:
             df_comments = pd.concat([df_comments, pd.DataFrame([{**post, **{'post_id':post_id}} for post in data['data']])])
+            print("try ")
+            print(df_comments)
+            return df_comments
         except:
             df_comments = pd.DataFrame([{**post, **{'post_id':post_id}} for post in data['data']])
+            print("exception ")
+            print(df_comments)
         
         while len(data['data']) != 0 and datetime.datetime.strptime(data['data'][-1]['created_time'], "%Y-%m-%dT%H:%M:%S%z") >= datetime.datetime.now(tz=utc) - minutes:
             url = f"https://graph.facebook.com/{post_id}/comments?access_token={access_token}&order=reverse_chronological&after={data['paging']['cursors']['after']}"
             response = requests.get(url)
             data = response.json()
+            print(url)
+            print(data)
             if len(data['data']) == 0:
                 break
             df_comments = pd.concat([df_comments, pd.DataFrame([{**post, **{'post_id':post_id}} for post in data['data']])])
         if len(df_comments) > 0:
             df_comments = df_comments[df_comments['created_time'].apply(lambda x: datetime.datetime.strptime(x, "%Y-%m-%dT%H:%M:%S%z")) >= datetime.datetime.now(tz=utc) - minutes]
-            
+        
+        print("DF_comments variable: ")
+        print(df_comments)
     return df_comments
 
 def get_fb_threads(df_comments, minutes, utc, page_id, access_token):
@@ -97,6 +107,8 @@ def get_fb_threads(df_comments, minutes, utc, page_id, access_token):
     return df_threads
 
 def send_to_stream(df_comments):
+    print("send data to streaming")
+    print(df_comments)
     ociMessageEndpoint = os.environ['OCI_MESSAGE_ENDPOINT'] 
     ociStreamOcid = os.environ['OCI_STREAM_OCID']
     ociConfigFilePath = os.environ['OCI_CONFIG_FILE_PATH']
@@ -119,6 +131,8 @@ def main():
     print(df_posts)
     
     df_comments = get_fb_comments(df_posts, minutes, utc, page_id, access_token)
+
+    print(df_comments)
     #df_threads = get_fb_threads(df_comments, minutes, utc, page_id, access_token)
     if len(df_comments) > 0:
         send_to_stream(df_comments)
